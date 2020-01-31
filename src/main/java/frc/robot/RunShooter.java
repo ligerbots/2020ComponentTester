@@ -14,10 +14,6 @@ public class RunShooter extends CommandBase {
   /**
    * Creates a new RunShooter.
    */
-  int oldPos = 0;
-  int pos = 0;
-  long time = 0;
-  long oldTime = 0;
   public RunShooter() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -37,11 +33,6 @@ public class RunShooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    oldTime = time;
-    time = System.nanoTime();
-    oldPos = pos;
-    pos = Robot.getEncoderValue();
-    SmartDashboard.putNumber("Current RPM", (pos - oldPos) / 1024.0 * (time - oldTime) * 60_000_000_000L);
     Robot.spinFeeder1(SmartDashboard.getNumber("feeder 1 speed", 0.5));
     Robot.spinFeeder2(SmartDashboard.getNumber("feeder 2 speed", 0.5));
     Robot.spinFeeder3(SmartDashboard.getNumber("feeder 3 speed", 0.5));

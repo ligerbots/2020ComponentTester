@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 
@@ -37,7 +36,7 @@ public class Robot extends TimedRobot {
   public static TalonSRX feeder2;
   public static TalonSRX feeder3;
 
-  public static RunCentripetalShooter shooterCommand;
+  public static RunShooter shooterCommand;
 
 
 
@@ -50,17 +49,15 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    wheel1 = new TalonSRX(10);
-    //wheel2 = new TalonSRX(14);
-    wheel2 = new TalonSRX(2);
-    wheel3 = new TalonSRX(4);
+    wheel1 = new TalonSRX(6);
+    wheel2 = new TalonSRX(14);
+    wheel3 = new TalonSRX(13);
 
-    feeder1 = new TalonSRX(11);
-    feeder2 = new TalonSRX(6);
-    //feeder3 = new TalonSRX(6);
+    feeder1 = new TalonSRX(2);
+    feeder2 = new TalonSRX(4);
+    feeder3 = new TalonSRX(10);
 
-    feeder1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
-    shooterCommand = new RunCentripetalShooter();
+    shooterCommand = new RunShooter();
   }
 
   /**
@@ -137,7 +134,6 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     // TODO Auto-generated method stub
     super.teleopInit();
-    wheel1.setSelectedSensorPosition(0);
     shooterCommand.schedule();
   }
   /**
@@ -153,10 +149,5 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-  }
-
-  public static int getEncoderValue () {
-    //return wheel1.getSelectedSensorPosition();
-    return feeder1.getSelectedSensorPosition();
   }
 }
