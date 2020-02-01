@@ -26,8 +26,8 @@ public class RunShooter extends CommandBase {
     SmartDashboard.putNumber("wheel 3 speed", 0.5);
 
     SmartDashboard.putNumber("feeder 1 speed", 0.25);
-    //SmartDashboard.putNumber("feeder 2 speed", 0.25);
-    //SmartDashboard.putNumber("feeder 3 speed", 0.25);
+    SmartDashboard.putNumber("feeder 2 speed", 0.25);
+    SmartDashboard.putNumber("feeder 3 speed", 0.25);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
