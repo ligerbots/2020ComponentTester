@@ -65,18 +65,6 @@ public class Robot extends TimedRobot {
     intakeCommand = new RunIntake();
   }
 
-  /**
-   * This function is called every robot packet, no matter the mode. Use
-   * this for items like diagnostics that you want ran during disabled,
-   * autonomous, teleoperated and test.
-   *
-   * <p>This runs after the mode specific periodic functions, but before
-   * LiveWindow and SmartDashboard integrated updating.
-   */
-  @Override
-  public void robotPeriodic() {
-  }
-
   public static void spinWheel1 (final double speed) {
     wheel1.set(ControlMode.PercentOutput, speed);
   }
@@ -91,6 +79,18 @@ public class Robot extends TimedRobot {
 
   public static void spinFeeder1(final double speed) {
     feeder1.set(speed);
+  }
+
+/**
+   * This function is called every robot packet, no matter the mode. Use
+   * this for items like diagnostics that you want ran during disabled,
+   * autonomous, teleoperated and test.
+   *
+   * <p>This runs after the mode specific periodic functions, but before
+   * LiveWindow and SmartDashboard integrated updating.
+   */
+  @Override
+  public void robotPeriodic() {
   }
 
   // public static void spinFeeder2(final double speed) {
