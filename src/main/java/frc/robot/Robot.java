@@ -7,8 +7,8 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-
 package frc.robot;
+
 import frc.robot.commands.*;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -18,8 +18,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
-
-
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,19 +36,17 @@ public class Robot extends TimedRobot {
   public static TalonSRX wheel1;
   public static TalonSRX wheel2;
   public static TalonSRX wheel3;
-  
-  public static TalonSRX feeder1;
-  public static TalonSRX feeder2;
-  public static TalonSRX feeder3;
+
+  public static CANSparkMax feeder1;
+  //public static TalonSRX feeder2;
+  //public static TalonSRX feeder3;
 
   public static RunShooter shooterCommand;
   public static RunIntake intakeCommand;
 
-
-
   /**
-   * This function is run when the robot is first started up and should be
-   * used for any initialization code.
+   * This function is run when the robot is first started up and should be used
+   * for any initialization code.
    */
   @Override
   public void robotInit() {
@@ -59,9 +57,9 @@ public class Robot extends TimedRobot {
     wheel2 = new TalonSRX(14);
     wheel3 = new TalonSRX(13);
 
-    feeder1 = new TalonSRX(2);
-    feeder2 = new TalonSRX(4);
-    feeder3 = new TalonSRX(10);
+    feeder1 = new CANSparkMax(5, MotorType.kBrushless);
+    //feeder2 = new TalonSRX(4);
+    //feeder3 = new TalonSRX(10);
 
     //shooterCommand = new RunShooter();
     intakeCommand = new RunIntake();
@@ -92,16 +90,16 @@ public class Robot extends TimedRobot {
   }
 
   public static void spinFeeder1(final double speed) {
-    feeder1.set(ControlMode.PercentOutput, speed);
+    feeder1.set(speed);
   }
 
-  public static void spinFeeder2(final double speed) {
-    feeder2.set(ControlMode.PercentOutput, speed);
-  }
+  // public static void spinFeeder2(final double speed) {
+  //   feeder2.set(ControlMode.PercentOutput, speed);
+  // }
 
-  public static void spinFeeder3(final double speed) {
-    feeder3.set(ControlMode.PercentOutput, speed);
-  }
+  // public static void spinFeeder3(final double speed) {
+  //   feeder3.set(ControlMode.PercentOutput, speed);
+  // }
 
   /**
    * This autonomous (along with the chooser code above) shows how to select

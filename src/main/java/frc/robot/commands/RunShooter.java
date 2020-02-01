@@ -6,7 +6,10 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
+
 import frc.robot.Robot;
+
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -34,8 +37,8 @@ public class RunShooter extends CommandBase {
   @Override
   public void execute() {
     Robot.spinFeeder1(SmartDashboard.getNumber("feeder 1 speed", 0.5));
-    Robot.spinFeeder2(SmartDashboard.getNumber("feeder 2 speed", 0.5));
-    Robot.spinFeeder3(SmartDashboard.getNumber("feeder 3 speed", 0.5));
+    // Robot.spinFeeder2(SmartDashboard.getNumber("feeder 2 speed", 0.5));
+    // Robot.spinFeeder3(SmartDashboard.getNumber("feeder 3 speed", 0.5));
     Robot.spinWheel1(SmartDashboard.getNumber("wheel 1 speed", 0.5) * -1);
     Robot.spinWheel2(SmartDashboard.getNumber("wheel 2 speed", 0.5) * -1);
     Robot.spinWheel3(SmartDashboard.getNumber("wheel 3 speed", 0.5) * -1);
