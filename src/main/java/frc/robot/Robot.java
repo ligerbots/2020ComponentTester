@@ -1,3 +1,5 @@
+
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -5,15 +7,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+
 package frc.robot;
+import frc.robot.commands.*;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 
 
 /**
@@ -31,12 +36,13 @@ public class Robot extends TimedRobot {
   public static TalonSRX wheel1;
   public static TalonSRX wheel2;
   public static TalonSRX wheel3;
-
+  
   public static TalonSRX feeder1;
   public static TalonSRX feeder2;
   public static TalonSRX feeder3;
 
   public static RunShooter shooterCommand;
+  public static RunIntake intakeCommand;
 
 
 
@@ -57,7 +63,8 @@ public class Robot extends TimedRobot {
     feeder2 = new TalonSRX(4);
     feeder3 = new TalonSRX(10);
 
-    shooterCommand = new RunShooter();
+    //shooterCommand = new RunShooter();
+    intakeCommand = new RunIntake();
   }
 
   /**
@@ -72,27 +79,27 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
   }
 
-  public static void spinWheel1 (double speed) {
+  public static void spinWheel1 (final double speed) {
     wheel1.set(ControlMode.PercentOutput, speed);
   }
 
-  public static void spinWheel2 (double speed) {
+  public static void spinWheel2(final double speed) {
     wheel2.set(ControlMode.PercentOutput, speed);
   }
 
-  public static void spinWheel3 (double speed) {
+  public static void spinWheel3(final double speed) {
     wheel3.set(ControlMode.PercentOutput, speed);
   }
 
-  public static void spinFeeder1 (double speed) {
+  public static void spinFeeder1(final double speed) {
     feeder1.set(ControlMode.PercentOutput, speed);
   }
 
-  public static void spinFeeder2 (double speed) {
+  public static void spinFeeder2(final double speed) {
     feeder2.set(ControlMode.PercentOutput, speed);
   }
 
-  public static void spinFeeder3 (double speed) {
+  public static void spinFeeder3(final double speed) {
     feeder3.set(ControlMode.PercentOutput, speed);
   }
 
@@ -134,7 +141,8 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     // TODO Auto-generated method stub
     super.teleopInit();
-    shooterCommand.schedule();
+    //shooterCommand.schedule();
+    intakeCommand.schedule();
   }
   /**
    * This function is called periodically during operator control.
