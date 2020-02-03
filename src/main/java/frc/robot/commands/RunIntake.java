@@ -1,11 +1,10 @@
 package frc.robot.commands;
 
-import frc.robot.Robot;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class RunIntake extends CommandBase {
+  CANSparkMax feeder1;
   /**
    * Creates a new RunIntake.
    */
