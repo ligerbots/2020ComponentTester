@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
     wheel3 = new TalonSRX(13);
 
     feeder1 = new CANSparkMax(10, MotorType.kBrushless);
-    flup = new CANSparkMax(8, MotorType.kBrushless);
+    // flup = new CANSparkMax(8, MotorType.kBrushless); not on road kill now? Feb 12
     //feeder2 = new TalonSRX(4);
     //feeder3 = new TalonSRX(10);
 
@@ -148,7 +148,7 @@ public class Robot extends TimedRobot {
     // TODO Auto-generated method stub
     super.teleopInit();
     //shooterCommand.schedule();
-    flupTest.schedule();
+    intakeCommand.schedule();
   }
   /**
    * This function is called periodically during operator control.
