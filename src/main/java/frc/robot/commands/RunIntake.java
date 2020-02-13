@@ -1,13 +1,11 @@
 package frc.robot.commands;
 
-import frc.robot.*;
-
-import edu.wpi.first.wpilibj.RobotBase;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 
 public class RunIntake extends CommandBase {
+  
   /**
    * Creates a new RunIntake.
    */

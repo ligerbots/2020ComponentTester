@@ -38,11 +38,13 @@ public class Robot extends TimedRobot {
   public static TalonSRX wheel3;
 
   public static CANSparkMax feeder1;
+  public static CANSparkMax flup;
   //public static TalonSRX feeder2;
   //public static TalonSRX feeder3;
 
   public static RunShooter shooterCommand;
   public static RunIntake intakeCommand;
+  public static FlupTest flupTest;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -58,11 +60,13 @@ public class Robot extends TimedRobot {
     wheel3 = new TalonSRX(13);
 
     feeder1 = new CANSparkMax(5, MotorType.kBrushless);
+    flup = new CANSparkMax(8, MotorType.kBrushless);
     //feeder2 = new TalonSRX(4);
     //feeder3 = new TalonSRX(10);
 
     //shooterCommand = new RunShooter();
     intakeCommand = new RunIntake();
+    flupTest = new FlupTest();
   }
 
   public static void spinWheel1 (final double speed) {
@@ -79,6 +83,10 @@ public class Robot extends TimedRobot {
 
   public static void spinFeeder1(final double speed) {
     feeder1.set(speed);
+  }
+
+  public static void spinFlup (double speed) {
+    flup.set(speed);
   }
 
 /**
@@ -140,7 +148,7 @@ public class Robot extends TimedRobot {
     // TODO Auto-generated method stub
     super.teleopInit();
     //shooterCommand.schedule();
-    intakeCommand.schedule();
+    flupTest.schedule();
   }
   /**
    * This function is called periodically during operator control.
