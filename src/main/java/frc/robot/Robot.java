@@ -59,7 +59,7 @@ public class Robot extends TimedRobot {
     wheel2 = new TalonSRX(14);
     wheel3 = new TalonSRX(13);
 
-    feeder1 = new CANSparkMax(5, MotorType.kBrushless);
+    feeder1 = new CANSparkMax(10, MotorType.kBrushless);
     flup = new CANSparkMax(8, MotorType.kBrushless);
     //feeder2 = new TalonSRX(4);
     //feeder3 = new TalonSRX(10);
