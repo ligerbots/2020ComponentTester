@@ -33,9 +33,7 @@ public class RobotContainer {
   private final Throttle throttle = new Throttle();
   private final Turn turn = new Turn();
   private final Shoulder climb = new Shoulder();
-  private final Winch winch= new Winch();
   public final RunShoulder runShoulder = new RunShoulder(climb);
-  // public final RunWinch runWinch = new RunWinch(winch);
   XboxController xbox = new XboxController(0);
 
   /**
@@ -77,21 +75,13 @@ public class RobotContainer {
     }
   }
 
-  public class Winch implements DoubleSupplier{
-
-    @Override
-    public double getAsDouble() {
-      double speed = SmartDashboard.getNumber("Winch speed:", 0.1);
-      return speed;
-    }
-  }
 
   // foo foo
   private void configureButtonBindings() {
     JoystickButton xboxA = new JoystickButton(xbox, 1);
     // JoystickButton xboxB = new JoystickButton(xbox, 2);
     JoystickButton xboxLine = new JoystickButton(xbox, 8);
-    xboxA.whileHeld(new RunWinch(winch)); //shootercomand
+    xboxA.whileHeld(new RunWinch(SmartDashboard.getNumber("Winch speed:", 0.1))); //shootercomand
   }
 
 
