@@ -1,5 +1,4 @@
 
-
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -13,6 +12,7 @@ import frc.robot.commands.*;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -39,12 +39,14 @@ public class Robot extends TimedRobot {
 
   public static CANSparkMax feeder1;
   public static CANSparkMax flup;
+  public static TalonSRX plg;
+  public static Encoder plgEncoder;
   //public static TalonSRX feeder2;
   //public static TalonSRX feeder3;
 
   public static RunShooter shooterCommand;
   public static RunIntake intakeCommand;
-  public static FlupTest flupTest;
+  public static PLGTest plgTest;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -55,18 +57,21 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    wheel1 = new TalonSRX(6);
-    wheel2 = new TalonSRX(14);
-    wheel3 = new TalonSRX(13);
+    //wheel1 = new TalonSRX(6);
+    //wheel2 = new TalonSRX(14);
+    //wheel3 = new TalonSRX(13);
 
-    feeder1 = new CANSparkMax(10, MotorType.kBrushless);
+    //plg = new TalonSRX(6);
+    plgEncoder = new Encoder(3, 4);
+
+    //feeder1 = new CANSparkMax(10, MotorType.kBrushless);
     // flup = new CANSparkMax(8, MotorType.kBrushless); not on road kill now? Feb 12
     //feeder2 = new TalonSRX(4);
     //feeder3 = new TalonSRX(10);
 
     //shooterCommand = new RunShooter();
     intakeCommand = new RunIntake();
-    flupTest = new FlupTest();
+    plgTest = new PLGTest();
   }
 
   public static void spinWheel1 (final double speed) {
@@ -85,8 +90,16 @@ public class Robot extends TimedRobot {
     feeder1.set(speed);
   }
 
+  public static void plgTest(double speed) {
+    plg.set(ControlMode.PercentOutput, speed);
+  }
+
   public static void spinFlup (double speed) {
     flup.set(speed);
+  }
+
+  public static int getPLGEncoder () {
+    return plgEncoder.get();
   }
 
 /**
@@ -148,7 +161,7 @@ public class Robot extends TimedRobot {
     // TODO Auto-generated method stub
     super.teleopInit();
     //shooterCommand.schedule();
-    intakeCommand.schedule();
+    plgTest.schedule();
   }
   /**
    * This function is called periodically during operator control.
