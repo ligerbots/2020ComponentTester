@@ -44,7 +44,6 @@ public class Robot extends TimedRobot {
   public static TalonSRX feeder2;
   public static TalonSRX feeder3;
 
-  public static CANSparkMax shoulder;
   public static CANSparkMax winch;
 
   public static CANSparkMax shooter1;
@@ -53,10 +52,10 @@ public class Robot extends TimedRobot {
 
   public static RunShooter shooterCommand;
   public static RunIntake intakeCommand;
-  public static RunShoulder runShoulder;
   public static RunWinch runWinch;
   XboxController xbox = new XboxController(0);
-  
+  private RobotContainer m_robotContainer;
+
 
   /**
    * This function is run when the robot is first started up and should be
@@ -68,9 +67,13 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
+  
+    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
+    // autonomous chooser on the dashboard.
+    m_robotContainer = new RobotContainer();
 
-    shoulder = new CANSparkMax(9,MotorType.kBrushless);
-    winch = new CANSparkMax(10,MotorType.kBrushless);
+
+    //winch = new CANSparkMax(9,MotorType.kBrushless);
 
     // wheel1 = new TalonSRX(6);
     // wheel2 = new TalonSRX(14);
@@ -86,7 +89,6 @@ public class Robot extends TimedRobot {
 
     //shooterCommand = new RunShooter();
     //intakeCommand = new RunIntake();
-    runShoulder = new RunShoulder();
   }
 
   /**
@@ -129,9 +131,9 @@ public class Robot extends TimedRobot {
     shooter1.set(speed);
   }
 
-  public static void runShoulder(final double speed) {
-    shoulder.set(speed);
-  }
+  // public static void runShoulder(final double speed) {
+  //   shoulder.set(speed);
+  // }
 
   public static void runWinch(final double speed) {
     winch.set(speed);
@@ -175,8 +177,7 @@ public class Robot extends TimedRobot {
     // TODO Auto-generated method stub
     super.teleopInit();
     //shooterCommand.schedule();
-    runShoulder.schedule();
-    runWinch.schedule();
+    m_robotContainer.runShoulder.schedule();
   }
   /**
    * This function is called periodically during operator control.

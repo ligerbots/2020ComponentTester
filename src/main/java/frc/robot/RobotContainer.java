@@ -9,6 +9,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.RunShoulder;
 import frc.robot.commands.RunWinch;
 
 //import edu.wpi.first.wpilibj.XboxController; will need later
@@ -30,6 +31,7 @@ public class RobotContainer {
   private final Throttle throttle = new Throttle();
   private final Turn turn = new Turn();
   private final Climb climb = new Climb();
+  public final RunShoulder runShoulder = new RunShoulder(climb);
   XboxController xbox = new XboxController(0);
 
   /**

@@ -10,13 +10,20 @@ import frc.robot.Robot;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class RunShoulder extends CommandBase {
 
   DoubleSupplier climb;
+  public static CANSparkMax shoulder;
   /**
    * Creates a new RunClimber.
    */
-  public RunShoulder() {
+  public RunShoulder(DoubleSupplier climb) {
+    this.climb = climb;
+    
+    shoulder = new CANSparkMax(11,MotorType.kBrushless);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -29,7 +36,7 @@ public class RunShoulder extends CommandBase {
   @Override
   public void execute() {
       double triggerValue = climb.getAsDouble();
-      Robot.runShoulder(triggerValue);
+      shoulder.set(triggerValue);
   }
 
   // Called once the command ends or is interrupted.
