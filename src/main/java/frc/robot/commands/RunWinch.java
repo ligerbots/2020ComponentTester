@@ -9,7 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+//import frc.robot.Robot;
 
 import java.util.function.DoubleSupplier;
 import com.revrobotics.CANSparkMax;
@@ -32,16 +32,14 @@ public class RunWinch extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // SmartDashboard.putNumber("Winch speed", 0.1);
-    // System.out.println("Winch button pressed");
+      SmartDashboard.putNumber("Winch speed", winch.getAsDouble());
+      System.out.println("Winch button pressed");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double triggerValue = winch.getAsDouble();
-    winchMotor.set(triggerValue);
-    // Robot.runWinch(SmartDashboard.getNumber("Winch speed", 0.1));
+    winchMotor.set(winch.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.

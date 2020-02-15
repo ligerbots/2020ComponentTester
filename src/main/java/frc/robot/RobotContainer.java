@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.RunShoulder;
 import frc.robot.commands.RunWinch;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 //import edu.wpi.first.wpilibj.XboxController; will need later
 import java.util.function.DoubleSupplier;
@@ -31,7 +33,7 @@ public class RobotContainer {
   private final Throttle throttle = new Throttle();
   private final Turn turn = new Turn();
   private final Shoulder climb = new Shoulder();
-  private final Winch winch = new Winch();
+  private final Winch winch= new Winch();
   public final RunShoulder runShoulder = new RunShoulder(climb);
   // public final RunWinch runWinch = new RunWinch(winch);
   XboxController xbox = new XboxController(0);
@@ -79,8 +81,8 @@ public class RobotContainer {
 
     @Override
     public double getAsDouble() {
-      
-      return xbox.getY(Hand.kLeft);
+      double speed = SmartDashboard.getNumber("Winch speed:", 0.1);
+      return speed;
     }
   }
 
@@ -89,7 +91,7 @@ public class RobotContainer {
     JoystickButton xboxA = new JoystickButton(xbox, 1);
     // JoystickButton xboxB = new JoystickButton(xbox, 2);
     JoystickButton xboxLine = new JoystickButton(xbox, 8);
-    //xboxA.whenPressed(new ClimberCommand()); //shootercomand
+    xboxA.whileHeld(new RunWinch(winch)); //shootercomand
   }
 
 
