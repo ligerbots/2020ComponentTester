@@ -22,9 +22,8 @@ public class RunWinch extends CommandBase {
   /**
    * Creates a new RunWinch.
    */
-  public RunWinch(final double speed) {
+  public RunWinch() {
     winchMotor = new CANSparkMax(9, MotorType.kBrushless);
-    this.speed = speed;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -38,6 +37,7 @@ public class RunWinch extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    speed = SmartDashboard.getNumber("Winch speed:", 0.1);
     winchMotor.set(speed);
   }
 

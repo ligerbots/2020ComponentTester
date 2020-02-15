@@ -81,7 +81,7 @@ public class RobotContainer {
     JoystickButton xboxA = new JoystickButton(xbox, 1);
     // JoystickButton xboxB = new JoystickButton(xbox, 2);
     JoystickButton xboxLine = new JoystickButton(xbox, 8);
-    xboxA.whileHeld(new RunWinch(SmartDashboard.getNumber("Winch speed:", 0.1))); //shootercomand
+    xboxA.whileHeld(new RunWinch()); //shootercomand
   }
 
 
