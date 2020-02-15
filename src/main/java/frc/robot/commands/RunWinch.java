@@ -11,24 +11,37 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
+import java.util.function.DoubleSupplier;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 public class RunWinch extends CommandBase {
+
+  private DoubleSupplier winch;
+  public static CANSparkMax winchMotor;
+
   /**
    * Creates a new RunWinch.
    */
-  public RunWinch() {
+  public RunWinch(DoubleSupplier winch) {
+    this.winch = winch;
+    winchMotor = new CANSparkMax(9,MotorType.kBrushless);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    SmartDashboard.putNumber("Winch speed", 0.25);
+    // SmartDashboard.putNumber("Winch speed", 0.1);
+    // System.out.println("Winch button pressed");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.runWinch(SmartDashboard.getNumber("Winch speed", 0.25));
+    double triggerValue = winch.getAsDouble();
+    winchMotor.set(triggerValue);
+    // Robot.runWinch(SmartDashboard.getNumber("Winch speed", 0.1));
   }
 
   // Called once the command ends or is interrupted.

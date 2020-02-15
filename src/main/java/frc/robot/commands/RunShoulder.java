@@ -15,15 +15,15 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class RunShoulder extends CommandBase {
 
-  DoubleSupplier climb;
-  public static CANSparkMax shoulder;
+  DoubleSupplier shoulder;
+  public static CANSparkMax shoulderMotor;
   /**
-   * Creates a new RunClimber.
+   * Creates a new RunShoulder.
    */
-  public RunShoulder(DoubleSupplier climb) {
-    this.climb = climb;
+  public RunShoulder(DoubleSupplier shoulder) {
+    this.shoulder = shoulder;
     
-    shoulder = new CANSparkMax(11,MotorType.kBrushless);
+    shoulderMotor = new CANSparkMax(11, MotorType.kBrushless);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -35,8 +35,8 @@ public class RunShoulder extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      double triggerValue = climb.getAsDouble();
-      shoulder.set(triggerValue);
+      double triggerValue = shoulder.getAsDouble();
+      shoulderMotor.set(triggerValue);
   }
 
   // Called once the command ends or is interrupted.

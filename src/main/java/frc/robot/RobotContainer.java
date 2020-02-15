@@ -30,8 +30,10 @@ public class RobotContainer {
   //private final DriveTrain robotDrive = new DriveTrain();
   private final Throttle throttle = new Throttle();
   private final Turn turn = new Turn();
-  private final Climb climb = new Climb();
+  private final Shoulder climb = new Shoulder();
+  private final Winch winch = new Winch();
   public final RunShoulder runShoulder = new RunShoulder(climb);
+  // public final RunWinch runWinch = new RunWinch(winch);
   XboxController xbox = new XboxController(0);
 
   /**
@@ -64,7 +66,7 @@ public class RobotContainer {
     }
   }
 
-  public class Climb implements DoubleSupplier{
+  public class Shoulder implements DoubleSupplier{
 
     @Override
     public double getAsDouble() {
@@ -73,13 +75,19 @@ public class RobotContainer {
     }
   }
 
+  public class Winch implements DoubleSupplier{
 
+    @Override
+    public double getAsDouble() {
+      
+      return xbox.getY(Hand.kLeft);
+    }
+  }
 
   // foo foo
   private void configureButtonBindings() {
     JoystickButton xboxA = new JoystickButton(xbox, 1);
-    JoystickButton xboxB = new JoystickButton(xbox, 2);
-    xboxA.whenPressed(new RunWinch()); //run winch
+    // JoystickButton xboxB = new JoystickButton(xbox, 2);
     JoystickButton xboxLine = new JoystickButton(xbox, 8);
     //xboxA.whenPressed(new ClimberCommand()); //shootercomand
   }
